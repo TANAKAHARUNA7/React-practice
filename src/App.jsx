@@ -1,4 +1,4 @@
-import React, { use, useState } from 'react';
+import React, { useState } from 'react';
 
 function App() {
   // ToDoList変数
@@ -19,6 +19,12 @@ function App() {
     setInput("");
   }
 
+  //　削除する関数
+  const deleteToDo = (index) => {
+    const newList = toDoList.filter((_, i) => i !== index);
+    setToDoList(newList);  
+  };
+
   //　入力値を管理して返還する関数
   return(
    
@@ -34,7 +40,9 @@ function App() {
 
       <ul>
         {toDoList.map((item, index) => (
-          <li key={index}>{item}</li>
+          <li key={index}>{item}
+            <button onClick={() => deleteToDo(index)}>削除</button>
+          </li>
         ))}
       </ul>
     </div>
